@@ -1,7 +1,7 @@
 ## Template Titles
 
 **Railway Title:** `Metabase [Updated Jul '26]`
-**Railway Description:** `Metabase [Jul '26] (Open-Source Business Intelligence & Analytics) Self Host`
+**Railway Description:** `Metabase [Jul '26] (Open-Source BI & Analytics) Self Host`
 **Spreadsheet Title:** `Metabase (Open-Source BI, Dashboards & Data Visualization Platform)`
 **GitHub Description:** `Metabase — open-source business intelligence and analytics platform. Deploy on Railway with one click.`
 
