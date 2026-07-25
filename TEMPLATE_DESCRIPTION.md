@@ -55,6 +55,8 @@ The template deploys `metabase/metabase:v0.63.1.6` — a specific, verified rele
 
 | Variable | Description | Value |
 |----------|-------------|-------|
+| `PORT` | Port Railway routes external traffic to. Must be set explicitly — a Dockerfile default alone isn't enough for Railway's edge to route correctly. | `3000` |
+| `MB_JETTY_PORT` | Metabase's own port-configuration variable (doesn't read `PORT` itself). | `3000` |
 | `MB_DB_TYPE` | Tells Metabase to use Postgres instead of its embedded default database. | `postgres` |
 | `MB_DB_HOST` | Hostname for Metabase's application database. | `${{Postgres.PGHOST}}` |
 | `MB_DB_PORT` | Port for Metabase's application database. | `${{Postgres.PGPORT}}` |
@@ -96,24 +98,24 @@ Typical cost: $7-15/month covering the Metabase app and managed Postgres togethe
 
 ### System Requirements for Hosting Metabase on a VPS
 
-Minimum: 1 shared vCPU, 1GB RAM for light usage. Metabase runs on the JVM, so allocate at least 1GB RAM even for small teams — under-provisioning memory is the most common cause of slow dashboard load times reported by self-hosters.
+Minimum: 1 shared vCPU, 1GB RAM. Metabase runs on the JVM, so allocate at least 1GB even for small teams — under-provisioning memory is the most common cause of slow dashboard loads for self-hosters.
 
 ## Frequently Asked Questions (FAQs)
 
 ### Why does Metabase take longer to start than other Railway templates?
-Metabase runs on the JVM and performs schema migrations against its application database on first boot. A 1-2 minute wait before the healthcheck passes is normal — it's not a broken deployment.
+It runs on the JVM and performs schema migrations against its application database on first boot. A 1-2 minute wait before the healthcheck passes is normal, not a broken deployment.
 
 ### Is Metabase free to use?
-The core platform is AGPL-3.0 open source and free to self-host indefinitely, with no user limits or per-seat fees. Paid Pro/Enterprise tiers add SSO and advanced permissions on top of the same free core.
+The core is AGPL-3.0 open source and free to self-host indefinitely, no user limits or per-seat fees. Paid Pro/Enterprise tiers add SSO and advanced permissions on the same free core.
 
 ### What databases can Metabase connect to?
-Postgres, MySQL, MariaDB, SQL Server, BigQuery, Snowflake, Redshift, and several others. The Postgres this template provisions is only for Metabase's own metadata — you connect your actual data source separately, through the UI.
+Postgres, MySQL, MariaDB, SQL Server, BigQuery, Snowflake, Redshift, and others. This template's Postgres is only for Metabase's own metadata — connect your actual data source separately, through the UI.
 
 ### Do I need to know SQL to use Metabase?
-No — the no-code question builder covers most common analysis without SQL. A built-in SQL editor is also available for anyone who wants raw query access alongside the visual builder.
+No — the no-code question builder covers most common analysis. A built-in SQL editor is also available for raw query access alongside the visual builder.
 
 ### How is this different from Power BI or Tableau?
-The core difference is pricing and control: Metabase has no per-seat licensing and runs entirely on infrastructure you own, while Power BI and Tableau charge per user and, in their cloud tiers, store data on the vendor's own servers.
+Pricing and control: Metabase has no per-seat licensing and runs on infrastructure you own, while Power BI and Tableau charge per user and, in their cloud tiers, store data on the vendor's own servers.
 
 ### Where can I download Metabase?
-Source code is at `github.com/metabase/metabase`, or pull the Docker image `metabase/metabase` directly. This template pulls a specific verified version automatically.
+Source is at `github.com/metabase/metabase`, or pull the Docker image `metabase/metabase` directly. This template pulls a specific verified version automatically.
