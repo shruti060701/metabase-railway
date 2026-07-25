@@ -3,3 +3,5 @@ FROM metabase/metabase:v0.58.21
 EXPOSE 3000
 
 ENV MB_DB_TYPE=postgres
+ENV PORT=3000
+ENV MB_JETTY_PORT=3000
